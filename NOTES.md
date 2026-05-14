@@ -1,7 +1,6 @@
-# neoLegacy v1.0.2b
+# neoLegacy v1.0.3b
 
-- Tabs on the Load/Create/Join UI are now clickable.
-- Fixed a crash when switching game modes using `/gamemode` on Windows.
+- Fixed a crash when running the server software on Linux via Wine.
 
 <img width="784" height="410" alt="image" src="https://github.com/user-attachments/assets/3731d5b4-b2d6-4c62-ab52-2e241fb7dcb4" />
 

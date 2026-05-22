@@ -329,21 +329,24 @@ void Boat::tick()
 	}
 	move(xd, yd, zd);
 
-	// Break boat on high speed collision
-	if ((horizontalCollision && lastSpeed > 0.20))
+	// Remove Break boat on high speed collision (It is jank but it works)
+		if ((horizontalCollision && lastSpeed > 0.20))
 	{
+        /*
 		if (!level->isClientSide && !removed)
 		{
-			remove();
+			//remove();
 			for (int i = 0; i < 3; i++)
 			{
-				spawnAtLocation(Tile::wood_Id, 1, 0);
+				// spawnAtLocation(Tile::wood_Id, 1, 0);
 			}
 			for (int i = 0; i < 2; i++)
 			{
-				spawnAtLocation(Item::stick->id, 1, 0);
+				//spawnAtLocation(Item::stick->id, 1, 0);
 			}
-		}
+        }
+		*/
+        return;
 	}
 	else
 	{

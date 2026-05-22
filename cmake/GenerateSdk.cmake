@@ -84,7 +84,6 @@ while(_left)
   set(_left ${_next})
 endwhile()
 
-set(_sys "")
 set(_body "")
 
 foreach(_h IN LISTS _sorted)
@@ -140,11 +139,7 @@ foreach(_h IN LISTS _sorted)
     if(_ls MATCHES "^#[ \t]*include[ \t]+\"([^\"]+)\"")
       continue()
     endif()
-    if(_ls MATCHES "^#[ \t]*include[ \t]+<([^>]+)>")
-      set(_sn "${CMAKE_MATCH_1}")
-      if(NOT _sn IN_LIST _sys)
-        list(APPEND _sys "${_sn}")
-      endif()
+    if(_ls MATCHES "^#[ \t]*include[ \t]+<")
       continue()
     endif()
 
@@ -173,15 +168,44 @@ file(WRITE "${_tmp}"
   "// Auto-generated. Do not edit.\n"
   "// Minecraft Console Edition SDK Header\n"
   "\n"
+  "#include <cstddef>\n"
+  "#include <cstdint>\n"
+  "#include <string>\n"
+  "#include <memory>\n"
+  "#include <vector>\n"
+  "#include <map>\n"
+  "#include <unordered_map>\n"
+  "#include <functional>\n"
+  "#include <algorithm>\n"
+  "#include <atomic>\n"
+  "#include <mutex>\n"
+  "#include <thread>\n"
+  "#include <fstream>\n"
+  "#include <sstream>\n"
+  "#include <iostream>\n"
+  "#include <array>\n"
+  "#include <set>\n"
+  "#include <queue>\n"
+  "#include <list>\n"
+  "#include <cmath>\n"
+  "#include <cassert>\n"
+  "#include <cstdio>\n"
+  "#include <cstdlib>\n"
+  "#include <cstring>\n"
+  "#include <cwchar>\n"
+  "#include <climits>\n"
+  "#include <cfloat>\n"
+  "#include <type_traits>\n"
+  "#include <initializer_list>\n"
+  "#include <exception>\n"
+  "#include <tuple>\n"
+  "#include <chrono>\n"
+  "#include <system_error>\n"
+  "#if defined(_WIN32) || defined(_WIN64)\n"
+  "#include <Windows.h>\n"
+  "#endif\n"
+  "\n"
 )
-
-if(_sys)
-  list(SORT _sys)
-  foreach(_s IN LISTS _sys)
-    file(APPEND "${_tmp}" "#include <${_s}>\n")
-  endforeach()
-  file(APPEND "${_tmp}" "\n")
-endif()
 
 file(APPEND "${_tmp}" "${_body}")
 file(APPEND "${_tmp}" "\n#endif // ${_guard}\n")
